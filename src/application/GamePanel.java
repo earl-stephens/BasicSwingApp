@@ -32,9 +32,34 @@ public class GamePanel extends JPanel {
 		g2.setColor(backgroundColor);
 		g2.fillRect(0, 0, width, height);
 		
-		g2.setColor(foregroundColor);
-		g2.fillRect(leftRightMargin, topBottomMargin, width - 2 * leftRightMargin, height - 2 * topBottomMargin);
+		//g2.setColor(foregroundColor);
+		//g2.fillRect(leftRightMargin, topBottomMargin, width - 2 * leftRightMargin, height - 2 * topBottomMargin);
+		
+		drawGrid(g2, width, height);
 	}
 	
-	
+	private void drawGrid(Graphics2D g2, int width, int height) {
+		g2.setColor(gridColor);
+		/* My solution, which does work
+		//g2.drawLine(leftRightMargin, topBottomMargin, width - leftRightMargin, topBottomMargin);
+		//g2.drawLine(leftRightMargin, topBottomMargin + CELLSIZE, width - leftRightMargin, topBottomMargin + CELLSIZE);
+		for(int i = 0; i <= (height - 2 * topBottomMargin); i = i + CELLSIZE) {
+			g2.drawLine(leftRightMargin, topBottomMargin + i, width - leftRightMargin, topBottomMargin + i);
+		}
+		
+		//g2.drawLine(leftRightMargin, topBottomMargin, leftRightMargin, height - topBottomMargin);
+		//g2.drawLine(leftRightMargin + CELLSIZE, topBottomMargin, leftRightMargin + CELLSIZE, height - topBottomMargin);
+		for(int j = 0; j <= (width - 2 * leftRightMargin); j = j + CELLSIZE) {
+		g2.drawLine(leftRightMargin + j, topBottomMargin, leftRightMargin + j, height - topBottomMargin);
+		}
+		*/
+		
+		for(int x = leftRightMargin; x <= width - leftRightMargin; x += CELLSIZE) {
+			g2.drawLine(x, topBottomMargin, x, height - topBottomMargin);
+		}
+		
+		for(int y = topBottomMargin; y <= height - topBottomMargin; y += CELLSIZE) {
+			g2.drawLine(leftRightMargin, y, width - leftRightMargin, y);
+		}
+	}
 }
