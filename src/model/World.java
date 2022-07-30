@@ -13,11 +13,11 @@ public class World {
 		grid =  new boolean[rows][columns];
 	}
 	
-	public boolean getCells(int row, int col) {
+	public boolean getCell(int row, int col) {
 		return grid[row][col];
 	}
 	
-	public void setCells(int row, int col, boolean status) {
+	public void setCell(int row, int col, boolean status) {
 		grid[row][col] = status;
 	}
 }

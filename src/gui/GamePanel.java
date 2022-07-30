@@ -31,20 +31,22 @@ public class GamePanel extends JPanel {
 		leftRightMargin = ((width % CELLSIZE) + CELLSIZE)/2;
 		topBottomMargin = ((height % CELLSIZE) + CELLSIZE)/2;
 		
-		int rowCounter = 0;
-		int colCounter = 0;
+		int rows = 0;
+		int columns = 0;
 		int intermediateCol = 0;
 		int intermediateRow = 0;
 		
 		intermediateCol = width - (2 * leftRightMargin);
-		rowCounter = intermediateCol / CELLSIZE;
+		rows = intermediateCol / CELLSIZE;
 		//System.out.println("number of columns = " + rowCounter);
 		
 		intermediateRow = height - (2 * topBottomMargin);
-		colCounter = intermediateRow / CELLSIZE;
+		columns = intermediateRow / CELLSIZE;
 		//System.out.println("number of rows = " + colCounter);
 		
-		World world = new World(rowCounter, colCounter);
+		World world = new World(rows, columns);
+		world.setCell(0, 0, true);
+		world.setCell(2, 1, true);
 		
 		g2.setColor(backgroundColor);
 		g2.fillRect(0, 0, width, height);
@@ -54,9 +56,17 @@ public class GamePanel extends JPanel {
 		
 		drawGrid(g2, width, height);
 		
-		fillCell(g2, 2, 4, true);
-		fillCell(g2, 2, 4, false);
-		fillCell(g2, 3, 5, true);
+		//fillCell(g2, 2, 4, true);
+		//fillCell(g2, 2, 4, false);
+		//fillCell(g2, 3, 5, true);
+		
+		for(int col = 0; col < columns; col++) {
+			for(int row = 0; row < rows; row ++) {
+				boolean status = world.getCell(row, col);
+				fillCell(g2, row, col, status);
+			}
+		}
+		
 	}
 	
 	private void fillCell(Graphics2D g2, int row, int col, boolean status) {
