@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import model.World;
+
 public class GamePanel extends JPanel {
 	
 	private final static int CELLSIZE = 50;
@@ -28,6 +30,21 @@ public class GamePanel extends JPanel {
 		
 		leftRightMargin = ((width % CELLSIZE) + CELLSIZE)/2;
 		topBottomMargin = ((height % CELLSIZE) + CELLSIZE)/2;
+		
+		int rowCounter = 0;
+		int colCounter = 0;
+		int intermediateCol = 0;
+		int intermediateRow = 0;
+		
+		intermediateCol = width - (2 * leftRightMargin);
+		rowCounter = intermediateCol / CELLSIZE;
+		//System.out.println("number of columns = " + rowCounter);
+		
+		intermediateRow = height - (2 * topBottomMargin);
+		colCounter = intermediateRow / CELLSIZE;
+		//System.out.println("number of rows = " + colCounter);
+		
+		World world = new World(rowCounter, colCounter);
 		
 		g2.setColor(backgroundColor);
 		g2.fillRect(0, 0, width, height);
