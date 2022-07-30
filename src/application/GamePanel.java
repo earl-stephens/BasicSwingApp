@@ -36,6 +36,16 @@ public class GamePanel extends JPanel {
 		//g2.fillRect(leftRightMargin, topBottomMargin, width - 2 * leftRightMargin, height - 2 * topBottomMargin);
 		
 		drawGrid(g2, width, height);
+		
+		fillCell(g2, 2, 4, true);
+		fillCell(g2, 2, 4, false);
+		fillCell(g2, 3, 5, true);
+	}
+	
+	private void fillCell(Graphics2D g2, int row, int col, boolean status) {
+		Color color = status ? foregroundColor: backgroundColor;
+		g2.setColor(color);
+		g2.fillRect((leftRightMargin + col * CELLSIZE) + 1, (topBottomMargin + row * CELLSIZE) + 1, CELLSIZE - 2, CELLSIZE - 2);
 	}
 	
 	private void drawGrid(Graphics2D g2, int width, int height) {
