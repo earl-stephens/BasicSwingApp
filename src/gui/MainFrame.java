@@ -34,6 +34,7 @@ public class MainFrame extends JFrame {
 					break;
 				case 10:
 					System.out.println("enter");
+					gamePanel.randomize();
 					break;
 				}
 			}

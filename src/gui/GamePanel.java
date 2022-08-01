@@ -152,4 +152,9 @@ public class GamePanel extends JPanel {
 		world.clear();
 		repaint();
 	}
+	
+	public void randomize() {
+		world.randomize();
+		repaint();
+	}
 }

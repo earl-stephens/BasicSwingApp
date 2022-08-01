@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Random;
+
 public class World {
 	private int rows;
 	private int columns;
@@ -38,5 +40,14 @@ public class World {
 		}
 	}
 	
+	public void randomize() {
+		for(int r = 0; r < rows; r++) {
+			for(int c = 0; c < columns; c++) {
+				Random randomBoolean = new Random();
+				boolean status = randomBoolean.nextBoolean();
+				setCell(r, c, status);
+			}
+		}
+	}
 	
 }
