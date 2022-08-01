@@ -29,12 +29,12 @@ public class GamePanel extends JPanel {
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("leftRightMargin: " + leftRightMargin);
-				System.out.println("topBottomMargin: " + topBottomMargin);
+				//System.out.println("leftRightMargin: " + leftRightMargin);
+				//System.out.println("topBottomMargin: " + topBottomMargin);
 				
 				int row = (e.getY() - topBottomMargin) / CELLSIZE;
 				int col = (e.getX() - leftRightMargin) / CELLSIZE;
-				System.out.println(row + ", " + col);
+				//System.out.println(row + ", " + col);
 				
 				if(row >= world.getRows() || col >= world.getColumns()) {
 					return;
@@ -82,12 +82,12 @@ public class GamePanel extends JPanel {
 		int intermediateRow = 0;
 		
 		intermediateCol = width - (2 * leftRightMargin);
-		rows = intermediateCol / CELLSIZE;
-		//System.out.println("number of columns = " + rowCounter);
+		columns = intermediateCol / CELLSIZE;
+		//System.out.println("number of columns = " + columns);
 		
 		intermediateRow = height - (2 * topBottomMargin);
-		columns = intermediateRow / CELLSIZE;
-		//System.out.println("number of rows = " + colCounter);
+		rows = intermediateRow / CELLSIZE;
+		//System.out.println("number of rows = " + rows);
 		
 		if(world == null) {
 			world = new World(rows, columns);
@@ -146,5 +146,20 @@ public class GamePanel extends JPanel {
 		for(int y = topBottomMargin; y <= height - topBottomMargin; y += CELLSIZE) {
 			g2.drawLine(leftRightMargin, y, width - leftRightMargin, y);
 		}
+	}
+	
+	public void clear() {
+		world.clear();
+		repaint();
+	}
+	
+	public void randomize() {
+		world.randomize();
+		repaint();
+	}
+	
+	public void next() {
+		world.next();
+		repaint();
 	}
 }

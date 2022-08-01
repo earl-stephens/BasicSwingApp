@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Random;
+
 public class World {
 	private int rows;
 	private int columns;
@@ -10,7 +12,7 @@ public class World {
 		this.rows = rows;
 		this.columns = columns;
 		
-		grid =  new boolean[rows][columns];
+		grid = new boolean[rows][columns];
 	}
 	
 	public boolean getCell(int row, int col) {
@@ -29,5 +31,26 @@ public class World {
 		return columns;
 	}
 	
+	public void clear() {
+		//System.out.println("Clearing the board");
+		for(int r = 0; r < rows; r++) {
+			for(int c = 0; c < columns; c++) {
+				setCell(r, c, false);
+			}
+		}
+	}
 	
+	public void randomize() {
+		for(int r = 0; r < rows; r++) {
+			for(int c = 0; c < columns; c++) {
+				Random randomBoolean = new Random();
+				boolean status = randomBoolean.nextBoolean();
+				setCell(r, c, status);
+			}
+		}
+	}
+	
+	public void next() {
+		System.out.println("next");
+	}
 }
