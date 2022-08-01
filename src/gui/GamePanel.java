@@ -26,9 +26,23 @@ public class GamePanel extends JPanel {
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				System.out.println("leftRightMargin: " + leftRightMargin);
+				System.out.println("topBottomMargin: " + topBottomMargin);
 				System.out.println(e.getX() + ", " + e.getY());
 				
-				world.setCell(3, 3, true);
+				//world.setCell(3, 3, true);
+				int colCell = (e.getX() - leftRightMargin) / CELLSIZE;
+				System.out.println(colCell);
+				
+				int rowCell = (e.getY() - topBottomMargin) / CELLSIZE;
+				System.out.println(rowCell);
+				
+				boolean worldFeedback = world.getCell(rowCell, colCell);
+				System.out.println(worldFeedback);
+				
+				if(!worldFeedback) {
+					world.setCell(rowCell, colCell, true);
+				}
 				
 				repaint();
 			}
