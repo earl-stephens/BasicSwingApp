@@ -50,4 +50,7 @@ public class World {
 		}
 	}
 	
+	public void next() {
+		System.out.println("next");
+	}
 }

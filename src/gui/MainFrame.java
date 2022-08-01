@@ -26,14 +26,15 @@ public class MainFrame extends JFrame {
 				
 				switch(code) {
 				case 32:
-					System.out.println("spacebar");
+					//System.out.println("spacebar");
+					gamePanel.next();
 					break;
 				case 8:
 					//System.out.println("backspace");
 					gamePanel.clear();
 					break;
 				case 10:
-					System.out.println("enter");
+					//System.out.println("enter");
 					gamePanel.randomize();
 					break;
 				}
