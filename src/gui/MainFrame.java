@@ -29,7 +29,8 @@ public class MainFrame extends JFrame {
 					System.out.println("spacebar");
 					break;
 				case 8:
-					System.out.println("backspace");
+					//System.out.println("backspace");
+					gamePanel.clear();
 					break;
 				case 10:
 					System.out.println("enter");

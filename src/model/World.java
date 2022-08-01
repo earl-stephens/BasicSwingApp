@@ -10,7 +10,7 @@ public class World {
 		this.rows = rows;
 		this.columns = columns;
 		
-		grid =  new boolean[rows][columns];
+		grid = new boolean[rows][columns];
 	}
 	
 	public boolean getCell(int row, int col) {
@@ -27,6 +27,15 @@ public class World {
 
 	public int getColumns() {
 		return columns;
+	}
+	
+	public void clear() {
+		//System.out.println("Clearing the board");
+		for(int r = 0; r < rows; r++) {
+			for(int c = 0; c < columns; c++) {
+				setCell(r, c, false);
+			}
+		}
 	}
 	
 	
