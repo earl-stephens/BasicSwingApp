@@ -41,12 +41,22 @@ public class World {
 	}
 	
 	public void randomize() {
+		/*
 		for(int r = 0; r < rows; r++) {
 			for(int c = 0; c < columns; c++) {
 				Random randomBoolean = new Random();
 				boolean status = randomBoolean.nextBoolean();
 				setCell(r, c, status);
 			}
+		}
+		*/
+		clear();
+		Random random = new Random();
+		
+		for(int i = 0; i < (rows * columns)/10; i++) {
+			int row = random.nextInt(rows);
+			int col = random.nextInt(columns);
+			setCell(row, col, true);
 		}
 	}
 	
