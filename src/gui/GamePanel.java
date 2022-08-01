@@ -28,9 +28,20 @@ public class GamePanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("leftRightMargin: " + leftRightMargin);
 				System.out.println("topBottomMargin: " + topBottomMargin);
-				System.out.println(e.getX() + ", " + e.getY());
+				
+				int row = (e.getY() - topBottomMargin) / CELLSIZE;
+				int col = (e.getX() - leftRightMargin) / CELLSIZE;
+				System.out.println(row + ", " + col);
+				
+				if(row >= world.getRows() || col >= world.getColumns()) {
+					return;
+				}
+				
+				boolean status = world.getCell(row, col);
+				world.setCell(row, col, !status);
 				
 				//world.setCell(3, 3, true);
+				/*
 				int colCell = (e.getX() - leftRightMargin) / CELLSIZE;
 				System.out.println(colCell);
 				
@@ -43,6 +54,7 @@ public class GamePanel extends JPanel {
 				if(!worldFeedback) {
 					world.setCell(rowCell, colCell, true);
 				}
+				*/
 				
 				repaint();
 			}
@@ -77,8 +89,8 @@ public class GamePanel extends JPanel {
 			world = new World(rows, columns);
 		}
 		
-		world.setCell(0, 0, true);
-		world.setCell(2, 1, true);
+		//world.setCell(0, 0, true);
+		//world.setCell(2, 1, true);
 		
 		g2.setColor(backgroundColor);
 		g2.fillRect(0, 0, width, height);
