@@ -61,6 +61,58 @@ public class World {
 	}
 	
 	public void next() {
-		System.out.println("next");
+		int counter = 0;
+		//System.out.println("next");
+		for(int r = 0; r < rows; r++) {
+			for(int c = 0; c < columns; c++) {
+				//System.out.println("grid square (row/column): " + r + " " + c);
+				System.out.println(neighborCount(r, c, counter));
+			}
+		}
 	}
+	
+	private int neighborCount(int r, int c, int counter) {
+		counter = 0;
+		if(r == 0 && c == 0) {
+			if(getCell(r, c + 1)) {
+				counter +=1;
+			};
+			if(getCell(r + 1, c)) {
+				counter += 1;
+			};
+			if(getCell(r + 1, c + 1)) {
+				counter +=1;
+			};
+		} else if(r == 0 && c < columns - 1) {
+			if(getCell(r, c - 1)) {
+				counter +=1;
+			};
+			if(getCell(r, c + 1)) {
+				counter +=1;
+			};
+			if(getCell(r + 1, c - 1)) {
+				counter +=1;
+			};
+			if(getCell(r + 1, c)) {
+				counter +=1;
+			};
+			if(getCell(r + 1, c + 1)) {
+				counter +=1;
+			}
+		}
+		return counter;
+	}
+	
+	/*private int rowAtTopCount(int r, int c, int counter) {
+		counter = 0;
+		for(int row = 0; row <= r + 1; row++) {
+			for(int col = c -1; col <= c + 1; c++) {
+				if(getCell(row, col)) {
+					counter +=1;
+				}
+			}
+		}
+		return counter;
+	}
+	*/
 }
