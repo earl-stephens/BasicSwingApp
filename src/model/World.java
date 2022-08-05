@@ -61,58 +61,45 @@ public class World {
 	}
 	
 	public void next() {
-		int counter = 0;
-		//System.out.println("next");
 		for(int r = 0; r < rows; r++) {
 			for(int c = 0; c < columns; c++) {
-				//System.out.println("grid square (row/column): " + r + " " + c);
-				System.out.println(neighborCount(r, c, counter));
+				int neighbors = countNeighbors(r, c);
+				System.out.println("(" + r + "," + c + ") " + neighbors);
 			}
 		}
 	}
 	
-	private int neighborCount(int r, int c, int counter) {
-		counter = 0;
-		if(r == 0 && c == 0) {
-			if(getCell(r, c + 1)) {
-				counter +=1;
-			};
-			if(getCell(r + 1, c)) {
-				counter += 1;
-			};
-			if(getCell(r + 1, c + 1)) {
-				counter +=1;
-			};
-		} else if(r == 0 && c < columns - 1) {
-			if(getCell(r, c - 1)) {
-				counter +=1;
-			};
-			if(getCell(r, c + 1)) {
-				counter +=1;
-			};
-			if(getCell(r + 1, c - 1)) {
-				counter +=1;
-			};
-			if(getCell(r + 1, c)) {
-				counter +=1;
-			};
-			if(getCell(r + 1, c + 1)) {
-				counter +=1;
-			}
-		}
-		return counter;
-	}
-	
-	/*private int rowAtTopCount(int r, int c, int counter) {
-		counter = 0;
-		for(int row = 0; row <= r + 1; row++) {
-			for(int col = c -1; col <= c + 1; c++) {
-				if(getCell(row, col)) {
-					counter +=1;
+	private int countNeighbors(int row, int col) {
+		int neighbors = 0;
+		
+		for(int rowOffset = -1; rowOffset <= 1; rowOffset++) {
+			for(int colOffset = -1; colOffset <= 1; colOffset++) {
+				if(rowOffset == 0 && colOffset == 0) {
+					continue;
+				}
+				
+				int gridRow = row + rowOffset;
+				int gridCol = col + colOffset;
+				
+				if(gridRow < 0) {
+					continue;
+				} else if(gridRow == rows) {
+					continue;
+				}
+				
+				if(gridCol < 0) {
+					continue;
+				} else if(gridCol == columns) {
+					continue;
+				}
+				
+				boolean status = getCell(gridRow, gridCol);
+				
+				if(status) {
+					neighbors++;
 				}
 			}
-		}
-		return counter;
+			}
+		return neighbors;
 	}
-	*/
 }
