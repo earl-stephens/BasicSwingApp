@@ -41,6 +41,7 @@ public class World {
 	}
 	
 	public void randomize() {
+		/*
 		for(int r = 0; r < rows; r++) {
 			for(int c = 0; c < columns; c++) {
 				Random randomBoolean = new Random();
@@ -48,9 +49,57 @@ public class World {
 				setCell(r, c, status);
 			}
 		}
+		*/
+		clear();
+		Random random = new Random();
+		
+		for(int i = 0; i < (rows * columns)/10; i++) {
+			int row = random.nextInt(rows);
+			int col = random.nextInt(columns);
+			setCell(row, col, true);
+		}
 	}
 	
 	public void next() {
-		System.out.println("next");
+		for(int r = 0; r < rows; r++) {
+			for(int c = 0; c < columns; c++) {
+				int neighbors = countNeighbors(r, c);
+				System.out.println("(" + r + "," + c + ") " + neighbors);
+			}
+		}
+	}
+	
+	private int countNeighbors(int row, int col) {
+		int neighbors = 0;
+		
+		for(int rowOffset = -1; rowOffset <= 1; rowOffset++) {
+			for(int colOffset = -1; colOffset <= 1; colOffset++) {
+				if(rowOffset == 0 && colOffset == 0) {
+					continue;
+				}
+				
+				int gridRow = row + rowOffset;
+				int gridCol = col + colOffset;
+				
+				if(gridRow < 0) {
+					continue;
+				} else if(gridRow == rows) {
+					continue;
+				}
+				
+				if(gridCol < 0) {
+					continue;
+				} else if(gridCol == columns) {
+					continue;
+				}
+				
+				boolean status = getCell(gridRow, gridCol);
+				
+				if(status) {
+					neighbors++;
+				}
+			}
+			}
+		return neighbors;
 	}
 }
