@@ -34,7 +34,6 @@ public class World {
 	}
 	
 	public void clear() {
-		//System.out.println("Clearing the board");
 		for(int r = 0; r < rows; r++) {
 			for(int c = 0; c < columns; c++) {
 				setCell(r, c, false);
@@ -43,19 +42,10 @@ public class World {
 	}
 	
 	public void randomize() {
-		/*
-		for(int r = 0; r < rows; r++) {
-			for(int c = 0; c < columns; c++) {
-				Random randomBoolean = new Random();
-				boolean status = randomBoolean.nextBoolean();
-				setCell(r, c, status);
-			}
-		}
-		*/
 		clear();
 		Random random = new Random();
 		
-		for(int i = 0; i < (rows * columns)/10; i++) {
+		for(int i = 0; i < (rows * columns)/6; i++) {
 			int row = random.nextInt(rows);
 			int col = random.nextInt(columns);
 			setCell(row, col, true);

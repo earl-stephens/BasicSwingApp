@@ -29,12 +29,9 @@ public class GamePanel extends JPanel {
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//System.out.println("leftRightMargin: " + leftRightMargin);
-				//System.out.println("topBottomMargin: " + topBottomMargin);
 				
 				int row = (e.getY() - topBottomMargin) / CELLSIZE;
 				int col = (e.getX() - leftRightMargin) / CELLSIZE;
-				//System.out.println(row + ", " + col);
 				
 				if(row >= world.getRows() || col >= world.getColumns()) {
 					return;
@@ -42,22 +39,6 @@ public class GamePanel extends JPanel {
 				
 				boolean status = world.getCell(row, col);
 				world.setCell(row, col, !status);
-				
-				//world.setCell(3, 3, true);
-				/*
-				int colCell = (e.getX() - leftRightMargin) / CELLSIZE;
-				System.out.println(colCell);
-				
-				int rowCell = (e.getY() - topBottomMargin) / CELLSIZE;
-				System.out.println(rowCell);
-				
-				boolean worldFeedback = world.getCell(rowCell, colCell);
-				System.out.println(worldFeedback);
-				
-				if(!worldFeedback) {
-					world.setCell(rowCell, colCell, true);
-				}
-				*/
 				
 				repaint();
 			}
@@ -92,21 +73,16 @@ public class GamePanel extends JPanel {
 		if(world == null) {
 			world = new World(rows, columns);
 		}
-		
-		//world.setCell(0, 0, true);
-		//world.setCell(2, 1, true);
+		else {
+			if(world.getRows() != rows || world.getColumns() != columns) {
+				world = new World(rows, columns);
+			}
+		}
 		
 		g2.setColor(backgroundColor);
 		g2.fillRect(0, 0, width, height);
 		
-		//g2.setColor(foregroundColor);
-		//g2.fillRect(leftRightMargin, topBottomMargin, width - 2 * leftRightMargin, height - 2 * topBottomMargin);
-		
 		drawGrid(g2, width, height);
-		
-		//fillCell(g2, 2, 4, true);
-		//fillCell(g2, 2, 4, false);
-		//fillCell(g2, 3, 5, true);
 		
 		for(int col = 0; col < columns; col++) {
 			for(int row = 0; row < rows; row ++) {
