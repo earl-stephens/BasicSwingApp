@@ -74,7 +74,7 @@ public class World {
 					status = false;
 				}
 				else if(neighbors > 3) {
-					status = false;
+					status = false; 
 				}
 				else if(neighbors == 3) {
 					status = true;
