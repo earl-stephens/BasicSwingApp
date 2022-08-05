@@ -7,12 +7,14 @@ public class World {
 	private int columns;
 	
 	private boolean[][] grid;
+	private boolean[][] buffer;
 	
 	public World(int rows, int columns) {
 		this.rows = rows;
 		this.columns = columns;
 		
 		grid = new boolean[rows][columns];
+		buffer = new boolean[rows][columns];
 	}
 	
 	public boolean getCell(int row, int col) {
@@ -64,26 +66,33 @@ public class World {
 		for(int r = 0; r < rows; r++) {
 			for(int c = 0; c < columns; c++) {
 				int neighbors = countNeighbors(r, c);
-				System.out.println("(" + r + "," + c + ") " + neighbors);
+				//System.out.println("(" + r + "," + c + ") " + neighbors);
 				
-				switch(neighbors) {
-				case 0:
-					setCell(r, c, false);
-					break;
-				case 1:
-					setCell(r, c, false);
-					break;
-				case 2:
-				break;
-				case 3:
-					setCell(r, c, true);
-					break;
-				default:
-					setCell(r, c, false);
-					break;
+				boolean status = false;
+				
+				if(neighbors < 2) {
+					status = false;
 				}
+				else if(neighbors > 3) {
+					status = false;
+				}
+				else if(neighbors == 3) {
+					status = true;
+				}
+				else if(neighbors == 2) {
+					status = getCell(r, c);
+				}
+				
+				buffer[r][c] = status;
 			}
 		}
+		
+		for(int r = 0; r < rows; r++) {
+			for(int c = 0; c < columns; c++) {
+				grid[r][c] = buffer[r][c];
+			}
+		}
+		
 	}
 	
 	private int countNeighbors(int row, int col) {
