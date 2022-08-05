@@ -65,6 +65,23 @@ public class World {
 			for(int c = 0; c < columns; c++) {
 				int neighbors = countNeighbors(r, c);
 				System.out.println("(" + r + "," + c + ") " + neighbors);
+				
+				switch(neighbors) {
+				case 0:
+					setCell(r, c, false);
+					break;
+				case 1:
+					setCell(r, c, false);
+					break;
+				case 2:
+				break;
+				case 3:
+					setCell(r, c, true);
+					break;
+				default:
+					setCell(r, c, false);
+					break;
+				}
 			}
 		}
 	}
